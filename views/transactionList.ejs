@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <%- include('partials/bootstrap') %>
+        <title>Admin - Transaction</title>
+    </head>
+    <body>
+        <%- include('partials/navbarAdmin') %> 
+        <div class="container">
+            <h1>Daftar Transaksi</h1>
+            <table class="table table-sm">
+                <tr>
+                    <th class="table-info">ID</th>
+                    <th class="table-info">Transaction Date</th>
+                    <th class="table-info">Customer</th>
+                    <th class="table-info">Book</th>
+                    <th class="table-info">Buy Amount</th>
+                    <th class="table-info">Total Price</th>
+                </tr>
+                <% for(let i=0; i<data.length; i++){ %>
+                    <tr>
+                        <td><%= data[i].id %></td>
+                        <td><%= dateToIndonesian(data[i].date) %></td>
+                        <td>
+                            <p>
+                                <b>Username: </b><%= data[i].Customer.username %><br>
+                                <b>Alamat: </b><%= data[i].Customer.address %><br>
+                                <b>No. Telp: </b><%= data[i].Customer.phoneNumber %><br>
+                            </p>
+                        </td>
+                        <td>
+                            <p>
+                                <b>Judul: </b><%= data[i].Book.title %><br>
+                                <b>Penulis: </b><%= data[i].Book.author %><br>
+                                <b>Harga: </b><%= toIndonesianRupiah(data[i].Book.price) %><br>
+                            </p>
+                        </td>
+                        <td><%= data[i].amount %></td>
+                        <td><%= toIndonesianRupiah(data[i].getTotalPrice()) %></td>
+                    </tr>
+                <% } %>
+            </table>
+        </div>
+    </body>
+    <foot>
+        <%- include('partials/footer') %>
+    </foot>
+</html>

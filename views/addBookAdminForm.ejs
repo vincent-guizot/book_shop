@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%- include('partials/bootstrap') %>
+        <title>Add Book</title>
+    </head>
+    <body>
+        <%- include('partials/navbarAdmin') %> 
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label>Title :</label>
+              <input type="text" class="form-control" name="title">
+            </div>
+            <div class="form-group">
+                <label>Author :</label>
+                <input type="text" class="form-control" name="author">
+            </div>
+            <div class="form-group">
+                <label>Price :</label>
+                <input type="number" class="form-control" name="price">
+            </div>
+            <div class="form-group">
+              <label>Category :</label>
+              <select class="form-control" name="categori">
+                <option value="fiksi">Fiksi</option>
+                <option value="nonfiksi">Non fiksi</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="image">Image: </label>
+              <input class="form-control-file" type="file" id="image" name="image">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Book</button>
+          </form>
+    </body>
+    <foot>
+      <%- include('partials/footer') %>
+  </foot>
+</html>

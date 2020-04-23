@@ -1,0 +1,53 @@
+<html>
+    <head>
+        <%- include('partials/bootstrap') %>
+        <title>Home</title>
+        <style>
+            .book-title {
+                font-weight: bold;
+            }
+
+            .book-price {
+                color: #f90f36;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('partials/navbar') %>
+        <div class="container">
+            <div class="mb-4">
+                <h1>Pembelian Berhasil!</h1>
+                <p class="text-center">
+                    ID Transaksi:<br>
+                    <b style="font-size: 1.3em"><%= transaction.id %></b><br>
+                    Tanggal Transaksi:<br>
+                    <b style="font-size: 1.3em"><%= dateToIndonesian(transaction.date) %></b><br>
+                </p>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Judul</th>
+                            <th>Penulis</th>
+                            <th>Harga</th>
+                            <th>Jumlah Pembelian</th>
+                            <th>Total Harga</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><%= transaction.Book.title %></td>
+                            <td><%= transaction.Book.author %></td>
+                            <td><%= toIndonesianRupiah(transaction.Book.price) %></td>
+                            <td><%= transaction.amount %></td>
+                            <td><%= toIndonesianRupiah(transaction.getTotalPrice()) %></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+    <foot>
+        <%- include('partials/footer') %>
+    </foot>
+</html>
