@@ -2,62 +2,62 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-      return queryInterface.bulkInsert('Books', [
+      return queryInterface.bulkInsert('Breads', [
         {
-          title : "Bumi",
-          author: "Tere Liye",
+          name : "Bumi",
+          chef: "Tere Liye",
           price: 95000,
-          categori: "Fiksi",
+          category: "Fiksi",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          title : "Bulan",
-          author: "Tere Liye",
+          name : "Bulan",
+          chef: "Tere Liye",
           price: 95000,
-          categori: "Fiksi",
+          category: "Fiksi",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          title : "Bintang",
-          author: "Tere Liye",
+          name : "Bintang",
+          chef: "Tere Liye",
           price: 95000,
-          categori:"Fiksi",
+          category:"Fiksi",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          title : "Matahari",
-          author: "Tere Liye",
+          name : "Matahari",
+          chef: "Tere Liye",
           price: 95000,
-          categori: "Fiksi",
+          category: "Fiksi",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          title : "Komet",
-          author: "Tere Liye",
+          name : "Komet",
+          chef: "Tere Liye",
           price: 95000,
-          categori: "Fiksi",
+          category: "Fiksi",
           createdAt: new Date(),
           updatedAt: new Date()
         },
         {
-          title : "Komet Minor",
-          author: "Tere Liye",
+          name : "Komet Minor",
+          chef: "Tere Liye",
           price: 95000,
-          categori:"Fiksi",
+          category:"Fiksi",
           createdAt: new Date(),
           updatedAt: new Date()
         }
-      
+
       ], {});
-    
+
   },
 
   down: (queryInterface, Sequelize) => {
-      return queryInterface.bulkDelete('Books', null, {});
-  
+      return queryInterface.bulkDelete('Breads', null, {});
+
   }
 };

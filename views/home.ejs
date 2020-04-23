@@ -3,14 +3,14 @@
         <%- include('partials/bootstrap') %>
         <title>Home</title>
         <style>
-            .book-item .book-title {
+            .bread-item .bread-name {
                 height: 3em;
                 font-size: 1.3em;
                 overflow: hidden;
                 font-weight: bold;
             }
 
-            .book-item .book-price {
+            .bread-item .bread-price {
                 color: #f90f36;
                 font-weight: bold;
             }
@@ -21,22 +21,22 @@
         <div class="container">
             <div class="jumbotron">
                 <h1 class="display-4">Selamat Datang</h1>
-                <p class="lead">Silakan melihat koleksi buku-buku kami</p>
+                <p class="lead">Silakan melihat koleksi roti kami</p>
                 <!-- <hr class="my-4">
                 <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                 <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a> -->
             </div>
-            <div class="book-list mb-4">
-                <h1>Books</h1>
+            <div class="bread-list mb-4">
+                <h1>Breads</h1>
                 <div class="row">
-                    <% books.forEach(book => { %>
+                    <% breads.forEach(bread => { %>
                     <div class="col-6 col-md-3">
-                        <div class="book-item p-3 my-3 border text-center">
-                            <img src="<%= book.image %>" class="img-fluid" alt="book image">
-                            <div class="book-title"><%= book.title %></div>
-                            <div class="book-author"><%= book.author %></div>
-                            <div class="book-price"><%= toIndonesianRupiah(book.price) %></div>
-                            <a href="/buy/<%= book.id %>" class="btn btn-primary w-100">Beli</a>
+                        <div class="bread-item p-3 my-3 border text-center">
+                            <img src="<%= bread.image %>" class="img-fluid" alt="bread image">
+                            <div class="bread-name"><%= bread.name %></div>
+                            <div class="bread-author"><%= bread.author %></div>
+                            <div class="bread-price"><%= toIndonesianRupiah(bread.price) %></div>
+                            <a href="/buy/<%= bread.id %>" class="btn btn-primary w-100">Beli</a>
                         </div>
                     </div>
                     <% }) %>

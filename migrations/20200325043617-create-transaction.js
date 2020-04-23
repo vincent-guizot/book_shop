@@ -17,7 +17,7 @@ module.exports = {
       CustomerId: {
         type: Sequelize.INTEGER
       },
-      BookId: {
+      BreadId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

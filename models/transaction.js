@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 
   class Transaction extends Model {
     getTotalPrice() {
-      return this.amount * this.Book.price;
+      return this.amount * this.Bread.price;
     }
   }
 
@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     CustomerId: DataTypes.INTEGER,
-    BookId: DataTypes.INTEGER
+    BreadId: DataTypes.INTEGER
   }, {
      sequelize,
     hooks: {
@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   Transaction.associate = function(models) {
     Transaction.belongsTo(models.Customer);
-    Transaction.belongsTo(models.Book);
+    Transaction.belongsTo(models.Bread);
   };
   return Transaction;
 };

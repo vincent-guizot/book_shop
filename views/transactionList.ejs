@@ -4,7 +4,7 @@
         <title>Admin - Transaction</title>
     </head>
     <body>
-        <%- include('partials/navbarAdmin') %> 
+        <%- include('partials/navbarAdmin') %>
         <div class="container">
             <h1>Daftar Transaksi</h1>
             <table class="table table-sm">
@@ -12,7 +12,7 @@
                     <th class="table-info">ID</th>
                     <th class="table-info">Transaction Date</th>
                     <th class="table-info">Customer</th>
-                    <th class="table-info">Book</th>
+                    <th class="table-info">Bread</th>
                     <th class="table-info">Buy Amount</th>
                     <th class="table-info">Total Price</th>
                 </tr>
@@ -29,9 +29,9 @@
                         </td>
                         <td>
                             <p>
-                                <b>Judul: </b><%= data[i].Book.title %><br>
-                                <b>Penulis: </b><%= data[i].Book.author %><br>
-                                <b>Harga: </b><%= toIndonesianRupiah(data[i].Book.price) %><br>
+                                <b>Judul: </b><%= data[i].Bread.name %><br>
+                                <b>Chef: </b><%= data[i].Bread.chef %><br>
+                                <b>Harga: </b><%= toIndonesianRupiah(data[i].Bread.price) %><br>
                             </p>
                         </td>
                         <td><%= data[i].amount %></td>
