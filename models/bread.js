@@ -4,26 +4,26 @@ module.exports = (sequelize, DataTypes) => {
   const Sequelize = sequelize.Sequelize
   const Model = Sequelize.Model
 
-  class Book extends Model {
-    
+  class Bread extends Model {
+
   }
 
-  Book.init({
-    title: {
+  Bread.init({
+    name: {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Title is empty'
+          msg: 'Bread is empty'
         }
       }
     },
-    author: {
+    chef: {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
           args: true,
-          msg: 'Author is empty'
+          msg: 'Chef is empty'
         }
       }
     },
@@ -36,22 +36,22 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    categori: DataTypes.STRING,
+    category: DataTypes.STRING,
     image: DataTypes.STRING
   }, {
     sequelize,
     hooks : {
-      beforeCreate: (book, options) => {
-        if(!book.image) {
-          book.image = '/assets/no_picture.jpg'
+      beforeCreate: (bread, options) => {
+        if(!bread.image) {
+          bread.image = '/assets/no_picture.jpg'
         }
       }
     }
   });
 
-  Book.associate = function(models) {
-    Book.belongsToMany(models.Customer, {through: models.Transaction});
-    Book.hasMany(models.Transaction);
+  Bread.associate = function(models) {
+    Bread.belongsToMany(models.Customer, {through: models.Transaction});
+    Bread.hasMany(models.Transaction);
   };
-  return Book;
+  return Bread;
 };

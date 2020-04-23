@@ -1,18 +1,18 @@
-const {Admin, Book, Customer, Transaction} = require('../models')
+const {Admin, Bread, Customer, Transaction} = require('../models')
 const {checkPassword} = require('../helpers/checkPassword')
 const {hashPassword} = require('../helpers/hashPassword')
 
 class Controller {
     static home(req, res){
-        Book.findAll().then(books => {
-            res.render('home.ejs', {books, username: req.session.username})
+        Bread.findAll().then(breads => {
+            res.render('home.ejs', {breads, username: req.session.username})
         })
     }
 
-    static findBooksCustomer(req, res){
-        Book.findAll({})
+    static findBreadsCustomer(req, res){
+        Bread.findAll({})
         .then(data => {
-            res.render('bookCustomer.ejs', {data})
+            res.render('breadCustomer.ejs', {data})
         })
         .catch(err => {
             console.log(err)
@@ -91,13 +91,13 @@ class Controller {
         })
     }
 
-    static bookDetailCustomerForm(req, res){
+    static breadDetailCustomerForm(req, res){
         const id = Number(req.params.id)
 
-        Book.findByPk(id)
+        Bread.findByPk(id)
         .then(data => {
-            res.render('detailBookCustomer.ejs', {data})
-        }) 
+            res.render('detailBreadCustomer.ejs', {data})
+        })
         .catch(err => {
             res.send('err')
         })
@@ -106,12 +106,12 @@ class Controller {
     static buyForm(req, res) {
         const id = Number(req.params.id)
 
-        Book.findByPk(id)
-        .then(book => {
-            if(book) {
-                res.render('buy', {book, username: req.session.username})
+        Bread.findByPk(id)
+        .then(bread => {
+            if(bread) {
+                res.render('buy', {bread, username: req.session.username})
             } else {
-                res.send('Book not found')
+                res.send('Bread not found')
             }
         })
         .catch(err => {
@@ -121,23 +121,23 @@ class Controller {
 
     static buy(req, res) {
         const id = Number(req.params.id)
-        let foundBook = null
-        Book.findByPk(id)
-        .then(book => {
-            if(book) {
-                foundBook = book
+        let foundBread = null
+        Bread.findByPk(id)
+        .then(bread => {
+            if(bread) {
+                foundBread = bread
                 return Transaction.create({
                     CustomerId: req.session.userId,
-                    BookId: id,
+                    BreadId: id,
                     amount: Number(req.body.amount)
                 })
             }
         }).then(transaction => {
-            if(foundBook) {
+            if(foundBread) {
                 req.session.lastTransactionId = transaction.id
                 res.redirect('/buysuccess')
             } else {
-                res.send('Book not found')
+                res.send('Bread not found')
             }
         })
         .catch(err => {
@@ -147,7 +147,7 @@ class Controller {
 
     static buySuccess(req, res) {
         const transactionId = req.session.lastTransactionId
-        Transaction.findOne({where: {id: transactionId}, include: [Book, Customer] }).then(transaction => {
+        Transaction.findOne({where: {id: transactionId}, include: [Bread, Customer] }).then(transaction => {
             console.log(transaction)
             if(transaction) {
                 res.render('buysuccess', {transaction, username: req.session.username})
@@ -161,21 +161,21 @@ class Controller {
 
     // ADMIN
 
-    static findBooksAdmin(req, res){
-        Book.findAll({})
+    static findBreadsAdmin(req, res){
+        Bread.findAll({})
         .then(data => {
-            res.render('bookAdminList.ejs', {data, username: req.session.adminUsername})
+            res.render('breadAdminList.ejs', {data, username: req.session.adminUsername})
         })
         .catch(err => {
             console.log(err)
         })
     }
 
-    static addBookAdminForm(req, res){
-        res.render('addBookAdminForm.ejs', {username: req.session.adminUsername})
+    static addBreadAdminForm(req, res){
+        res.render('addBreadAdminForm.ejs', {username: req.session.adminUsername})
     }
 
-    static addBookAdmin(req, res){
+    static addBreadAdmin(req, res){
         req.body.createdAt = new Date()
         req.body.updateAt = new Date()
 
@@ -183,49 +183,49 @@ class Controller {
         if(req.file) {
             insertData.image = '/' + req.file.destination + req.file.filename
         }
-        Book.create(insertData)
+        Bread.create(insertData)
         .then(data => {
-            res.redirect('/bookAdmin')
+            res.redirect('/breadAdmin')
         })
         .catch(err => {
             res.send(err)
         })
     }
 
-    static editBookAdminForm(req, res){
+    static editBreadAdminForm(req, res){
 
         const id = Number(req.params.id)
 
-        Book.findByPk(id)
+        Bread.findByPk(id)
         .then(data => {
-            res.render('editBookAdmin.ejs', {data, username: req.session.adminUsername})
+            res.render('editBreadAdmin.ejs', {data, username: req.session.adminUsername})
         })
         .catch(err => {
             res.send('err')
         })
     }
 
-    static editBookAdmin(req, res){
+    static editBreadAdmin(req, res){
         const id = req.params.id
         const insertData = req.body
         if(req.file) {
             insertData.image = '/' + req.file.destination + req.file.filename
         }
-        Book.update(insertData, {where : {id}})
+        Bread.update(insertData, {where : {id}})
         .then(() => {
-            res.redirect('/bookAdmin')
+            res.redirect('/breadAdmin')
         })
         .catch(err => {
             res.send('err')
         })
     }
 
-    static deleteBookAdmin(req, res){
+    static deleteBreadAdmin(req, res){
         const id = req.params.id
 
-        Book.destroy({where : {id}})
+        Bread.destroy({where : {id}})
         .then(data => {
-            res.redirect('/bookAdmin')
+            res.redirect('/breadAdmin')
         })
         .catch(err => {
             res.send(err)
@@ -233,7 +233,7 @@ class Controller {
     }
 
     static transactions(req, res){
-        Transaction.findAll({order: [['date', 'asc']], include: [Book, Customer]})
+        Transaction.findAll({order: [['date', 'asc']], include: [Bread, Customer]})
         .then(data => {
             res.render('transactionList.ejs', {data, username: req.session.adminUsername})
         })
@@ -264,7 +264,7 @@ class Controller {
             if(success) {
                 req.session.adminId = foundData.id
                 req.session.adminUsername = foundData.username
-                res.redirect('/bookAdmin')
+                res.redirect('/breadAdmin')
             } else {
                 res.send('Invalid Username/Password')
             }

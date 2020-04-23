@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   Customer.init({
-    username: 
+    username:
     {
       type: DataTypes.STRING,
       validate: {
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    password: 
+    password:
     {
       type: DataTypes.STRING,
       validate: {
@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    address: 
+    address:
     {
       type: DataTypes.STRING,
       validate: {
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    phoneNumber: 
+    phoneNumber:
     {
       type: DataTypes.STRING,
       validate: {
@@ -46,9 +46,9 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {sequelize});
-  
+
   Customer.associate = function(models) {
-    Customer.belongsToMany(models.Book, {through: models.Transaction});
+    Customer.belongsToMany(models.Bread, {through: models.Transaction});
     Customer.hasMany(models.Transaction);
   };
   return Customer;

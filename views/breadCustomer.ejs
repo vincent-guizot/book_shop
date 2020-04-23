@@ -1,16 +1,15 @@
 <html>
     <head>
         <%- include('partials/bootstrap') %>
-        <title>Admin - Book</title>
+        <title>Movies</title>
     </head>
     <body>
-        <%- include('partials/navbarAdmin') %> 
+        <%- include('partials/navbar') %>
         <table class="table table-sm">
-            <a href="book/add">Add Book</a> 
             <tr>
                 <th class="table-info">No</th>
-                <th class="table-info">Title</th>
-                <th class="table-info">Author</th>
+                <th class="table-info">Name</th>
+                <th class="table-info">Chef</th>
                 <th class="table-info">Price</th>
                 <th class="table-info">Categori</th>
                 <th class="table-info">Actions</th>
@@ -19,12 +18,12 @@
             <% for(let i=0; i<data.length; i++){ %>
                 <tr>
                     <td><%= no++ %></td>
-                    <td><%= data[i].title %></td>
-                    <td><%= data[i].author%></td>
+                    <td><%= data[i].name %></td>
+                    <td><%= data[i].chef%></td>
                     <td><%= data[i].price%></td>
                     <td><%= data[i].categori %></td>
-                    <td><a href="book/edit/<%=data[i].id%>">Edit</a> 
-                        <a href="book/delete/<%=data[i].id%>" >Hapus</a>
+                    <td><a href="bread/detail/<%=data[i].id%>">Detail</a>
+                        <a href="%">Buy</a>
                     </td>
                 </tr>
             <% } %>

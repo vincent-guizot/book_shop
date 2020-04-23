@@ -4,15 +4,15 @@
         <title>Movies</title>
     </head>
     <body>
-        <%- include('partials/navbar') %> 
+        <%- include('partials/navbar') %>
         <form>
             <div class="form-group">
-              <label>Title :</label>
-              <input type="text" class="form-control" name="title" value="<%= data.title%> ">
+              <label>Name :</label>
+              <input type="text" class="form-control" name="name" value="<%= data.name%> ">
             </div>
             <div class="form-group">
-                <label>Author :</label>
-                <input type="text" class="form-control" name="author" value="<%= data.author %>">
+                <label>Chef :</label>
+                <input type="text" class="form-control" name="chef" value="<%= data.chef %>">
             </div>
             <div class="form-group">
                 <label>Price :</label>
@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label>Category :</label>
-                <input type="text" class="form-control" name="price" value="<%= data.categori %>">
+                <input type="text" class="form-control" name="price" value="<%= data.category %>">
             </div>
           </form>
     </body>

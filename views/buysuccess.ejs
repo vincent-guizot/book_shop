@@ -3,11 +3,11 @@
         <%- include('partials/bootstrap') %>
         <title>Home</title>
         <style>
-            .book-title {
+            .bread-name {
                 font-weight: bold;
             }
 
-            .book-price {
+            .bread-price {
                 color: #f90f36;
                 font-weight: bold;
             }
@@ -28,7 +28,7 @@
                     <thead>
                         <tr>
                             <th>Judul</th>
-                            <th>Penulis</th>
+                            <th>Penulis</th>Bread
                             <th>Harga</th>
                             <th>Jumlah Pembelian</th>
                             <th>Total Harga</th>
@@ -36,9 +36,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><%= transaction.Book.title %></td>
-                            <td><%= transaction.Book.author %></td>
-                            <td><%= toIndonesianRupiah(transaction.Book.price) %></td>
+                            <td><%= transaction.Bread.name %></td>
+                            <td><%= transaction.Bread.chef %></td>
+                            <td><%= toIndonesianRupiah(transaction.Bread.price) %></td>
                             <td><%= transaction.amount %></td>
                             <td><%= toIndonesianRupiah(transaction.getTotalPrice()) %></td>
                         </tr>
